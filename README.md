@@ -7,7 +7,7 @@ This should save you time building your new deck if you have your or any public 
 To install, open your terminal and create a new environment.
 If you use conda:
 
-```conda create env my_env python=3```
+```conda create -n my_env python=3```
 
 Then type
 
