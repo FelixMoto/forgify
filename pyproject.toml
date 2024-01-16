@@ -1,0 +1,15 @@
+[project]
+name = "forgify"
+version = "0.0.1"
+authors = [
+    { name = "Felix", email = "not.your@business.com" },
+]
+requires-python = ">=3.9"
+dependencies = [
+    "click",
+    "selenium",
+    "pathlib"
+]
+
+[project.scripts]
+forgify = "commands.main:cli"
