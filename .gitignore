@@ -1,4 +1,5 @@
 .DS_Store
 forgify.egg-info/
 commands/__pycache__/
+commands/.DS_Store
 commands/config.json
