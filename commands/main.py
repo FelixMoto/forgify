@@ -53,7 +53,7 @@ def set_path(ctx, param, value):
               expose_value=False, is_eager=True, help="print version number.")
 @click.option("--set_path", callback=set_path,
               expose_value=True, is_eager=True, help="set path to where decklists are saved.")
-def cli(url, verbose) -> None:
+def cli(url, verbose, set_path) -> None:
     """Command line tool to fetch decklists from Moxfield.com and translate them
     into deck list readable with MtG forge.
     
