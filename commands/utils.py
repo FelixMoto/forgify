@@ -17,6 +17,8 @@ def get_decklist_from_url(url, verbose):
     ----------
     url : str
         the url to the desired deck
+    verbose : bool
+        detail printed to command line
     
     Returns
     -------
@@ -60,7 +62,7 @@ def get_decklist_from_url(url, verbose):
     return decklist_str
 
 
-def map_to_dck(decklist, verbose):
+def map_to_dck(decklist):
     """takes the single string returned from get_decklist_from_url
     and map that onto a decklist that can be read by forge
     
@@ -81,8 +83,10 @@ def map_to_dck(decklist, verbose):
 
     """
 
-    # split decklist into cards by the return str
-    card_list = decklist.split("\n")
+    # split decklist into main and sideboard, if we have sideboard cards
+    main_sideboard = decklist.split("\n\n")
+    # split decklist into cards by the return str, ignore sideboard for now
+    card_list = main_sideboard[0].split("\n")
 
     # go through all cards and transform the string
     forge_list = []
@@ -107,15 +111,15 @@ def map_to_dck(decklist, verbose):
     deck_str = header + main
 
     # command line invert color and reset
-    REVERSE = "\033[97;45m" # white text on magenta background
-    RESET = "\033[0m"
+    reverse = "\033[97;45m" # white text on magenta background
+    reset = "\033[0m"
 
     # print our decklist
     print("\n")
-    print(f"{REVERSE}Decklist:{RESET}") # only to demonstrate different coloring
+    print(f"{reverse}Decklist:{reset}") # only to demonstrate different coloring
     print(deck_str + "\n")
     # print number of cards in list
-    print(f"{REVERSE}Number of cards{RESET}")
+    print(f"{reverse}Number of cards{reset}")
     print(sum(num_cards), "\n")
 
     return deck_str, commander_name

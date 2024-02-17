@@ -7,7 +7,7 @@ import click
 
 import importlib.metadata
 
-import commands.utils 
+import commands.utils
 
 # containing save path
 CONFIG_FILENAME = Path(os.path.dirname(__file__)) / "config.json"
@@ -18,7 +18,8 @@ def print_version(ctx, param, value):
 
     if not value or ctx.resilient_parsing:
         return
-    # get version from pyproject.toml 
+
+    # get version from pyproject.toml
     version = importlib.metadata.version("forgify")
     click.echo(version)
     ctx.exit()
@@ -52,7 +53,7 @@ def set_path(ctx, param, value):
               expose_value=False, is_eager=True, help="print version number.")
 @click.option("--set_path", callback=set_path,
               expose_value=True, is_eager=True, help="set path to where decklists are saved.")
-def cli(url, verbose, set_path) -> None:
+def cli(url, verbose) -> None:
     """Command line tool to fetch decklists from Moxfield.com and translate them
     into deck list readable with MtG forge.
     
@@ -68,11 +69,10 @@ def cli(url, verbose, set_path) -> None:
             config_dict = data
         save_path = Path(config_dict["savepath"])
 
-
     # get decklist from web
     deck_string = commands.utils.get_decklist_from_url(url, verbose)
     # create single string for forge
-    deck_string, commander = commands.utils.map_to_dck(deck_string, verbose)
+    deck_string, commander = commands.utils.map_to_dck(deck_string)
 
     # save to file
     commands.utils.save_to_dck(deck_string, commander, save_path, verbose)
