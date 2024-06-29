@@ -3,9 +3,8 @@
 import os
 from pathlib import Path
 import json
-import click
-
 import importlib.metadata
+import click
 
 import commands.utils
 
@@ -70,9 +69,9 @@ def cli(url, verbose, set_path) -> None:
         save_path = Path(config_dict["savepath"])
 
     # get decklist from web
-    deck_string = commands.utils.get_decklist_from_url(url, verbose)
+    Deck = commands.utils.get_decklist_from_url(url, verbose)
     # create single string for forge
-    deck_string, commander = commands.utils.map_to_dck(deck_string)
+    deck_string, commander = commands.utils.map_to_dck(Deck)
 
     # save to file
     commands.utils.save_to_dck(deck_string, commander, save_path, verbose)
