@@ -1,6 +1,6 @@
 [project]
 name = "forgify"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
     { name = "Felix", email = "not.your@business.com" },
 ]
